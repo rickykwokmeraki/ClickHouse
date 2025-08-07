@@ -64,7 +64,7 @@ class Result(MetaClasses.Serializable):
     start_time: Optional[float] = None
     duration: Optional[float] = None
     results: List["Result"] = dataclasses.field(default_factory=list)
-    files: List[str] = dataclasses.field(default_factory=list)
+    files: List[Union[str, Path]] = dataclasses.field(default_factory=list)
     links: List[str] = dataclasses.field(default_factory=list)
     info: str = ""
     ext: Dict[str, Any] = dataclasses.field(default_factory=dict)
