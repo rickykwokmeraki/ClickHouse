@@ -34,8 +34,8 @@ CLICKHOUSE_PLAY_PASSWORD = os.environ.get("CLICKHOUSE_PLAY_PASSWORD", "")
 CLICKHOUSE_PLAY_DB = os.environ.get("CLICKHOUSE_PLAY_DB", "default")
 
 MAX_RETRY = 1
-NUM_WORKERS = 5
-SLEEP_BETWEEN_RETRIES = 5
+NUM_WORKERS = 4
+SLEEP_BETWEEN_RETRIES = 3
 PARALLEL_GROUP_SIZE = 100
 CLICKHOUSE_BINARY_PATH = "usr/bin/clickhouse"
 
@@ -840,7 +840,6 @@ class ClickhouseIntegrationTestsRunner:
                     AND (check_start_time >= ({start_time_filter} - toIntervalDay(4)))
                     AND (check_start_time <= ({start_time_filter}))
                     AND ((head_ref = 'master') AND startsWith(head_repo, 'ClickHouse/'))
-                    AND (test_status != 'SKIPPED')
                     AND (test_name != '')
                 GROUP BY test_name
             )
